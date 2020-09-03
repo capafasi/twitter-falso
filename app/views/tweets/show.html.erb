@@ -3,9 +3,11 @@
       <div class= "col-12  shadow-lg rounded  p-1 mt-3 card">
         <div class="row">
               <div class ="col-2 rounded ">
-                <%=image_tag (@tweet.user.image_url), :class =>"rounded avatar" %> 
+                <%=image_tag (@tweet.user.image_url), :class =>"rounded avatar" %><br/>
+                
               </div>
               <div class="col-9 "> 
+                
                 <span class="username"><%= @tweet.user.name%> dice: </span></br/>   
                 <span><%=link_to '<i class="far fa-calendar-alt"></i>'.html_safe+distance_of_time_in_words(Time.now, @tweet.created_at), @tweet%></span></br/>
                 <%= @tweet.content%>
@@ -18,6 +20,7 @@
             <div class= "col-12">
                 <div class="p3 text-right mb-2">
                   <span>
+               
                     <%= @tweet.likes.count%> 
                     <% if @tweet.is_liked?(current_user)%>
                     <%=link_to '<i class=" fas fa-heart text-danger"></i>'.html_safe, tweet_likes_path(@tweet), method: :post %>
