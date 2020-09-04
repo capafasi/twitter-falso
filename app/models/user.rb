@@ -11,7 +11,14 @@ class User < ApplicationRecord
   has_many :likes
   has_many :liked_tweets, :through => :likes, :source => :tweet
 
-
+  # def admin
+  #   if self.admin == true
+  #     true 
+  #   else
+  #      false
+  #   end
+    
+  # end
  
    #metodo para identificar todos los usuarios que son mis amigos, o que sigo
   def users_followed
@@ -26,6 +33,20 @@ class User < ApplicationRecord
 
   def arr_friend_id
     self.friends.pluck(:friend_id)
+  end
+
+ def friends_count
+  self.friends.count
+ end 
+  def tweets_count
+    
+    self.tweets.where(rt_ref: nil).count
+  end
+  def likes_give_it
+    self.likes.count
+  end
+  def retweets_give_it
+    self.tweets.where.not(rt_ref: nil).count
   end
 end
 
