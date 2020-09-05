@@ -19,8 +19,7 @@ class Tweet < ApplicationRecord
     new_array = []
     self.content.split(" ").each do |word|
       if word.start_with?("#")
-        word_parsed = word.sub '#','%23'
-        word = link_to(word, Rails.application.routes.url_helpers.root_path+"?search="+word_parsed)
+        word = link_to(word, Rails.application.routes.url_helpers.root_path+"?search="+word)
       end
       new_array.push(word)
     end 
